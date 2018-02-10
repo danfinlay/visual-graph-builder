@@ -15,6 +15,8 @@ const store = configureStore({
 render(
   h(Root, {
     store,
+    style: {
+    }
   }),
 container)
 

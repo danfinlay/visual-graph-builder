@@ -2,6 +2,8 @@ const inherits = require('util').inherits
 const Component = require('react').Component
 const h = require('react-hyperscript')
 const connect = require('react-redux').connect
+const Tools = require('./components/tools')
+const Workspace = require('./components/workspace')
 
 module.exports = connect(mapStateToProps)(AppRoot)
 
@@ -19,22 +21,29 @@ function AppRoot () {
 
 AppRoot.prototype.render = function () {
   const props = this.props
-
   return (
-    h('.content', [
+    h('.content', {
+      style: {
+        height: '100%',
+      }
+    }, [
       h('div', {
         style: {
-          background: 'grey',
         },
       }, [
-        h('h1', `Welcome ${props.view}`),
-        h('h2', `The count is ${props.nonce}`),
+        h('h1', `Graph Builder`),
+      ]),
 
-        h('button', {
-          onClick: () => this.incrementNonce(),
-        }, 'COUNT HIGHER!'),
-
-      ])
+      h('.workspace', {
+        style: {
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'row',
+        },
+      }, [
+        h(Tools),
+        h(Workspace),
+      ]),
     ])
   )
 }
